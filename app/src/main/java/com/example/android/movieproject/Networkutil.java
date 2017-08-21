@@ -29,15 +29,14 @@ public final class Networkutil {
             "w185";
     final static String QUERY_PARAM = "?";
 
-    private static final String API_KEY = "api_key=";//put your api key here
+    private static final String API_KEY = "1fd9d69d136b388b779b89d3d9c5e57a";//put your api key here
 
     private static final String   MOVIES_URL =
             "http://image.tmdb.org/t/p/";
+    public static String response_From_Movie_Data_Base;
 
     /**
      * build url to talk to the tmdb database
-     *
-     * @param movieQuery the base url to build upon.
      * @return The URL to use to query the weather server.
      */
     public static URL buildUrl() {
@@ -83,10 +82,8 @@ public final class Networkutil {
         } finally {
             urlConnection.disconnect();
         }
+
     }
-
-
-
 
 
 }

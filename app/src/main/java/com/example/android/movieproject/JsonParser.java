@@ -9,16 +9,21 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
+
 /**
  * Created by itsidoadjavon on 8/1/17.
  */
 
 public final class JsonParser {
 
+    //I have to send the json parser to the main thread in the async task
 
-   // String response_From_Movie_Data_Base = Networkutil.getResponseFromHttpUrl();
-    public  final static  String response_From_Movie_Data_Base = null;
+    private static  String jsonParser = null;
 
+    public JsonParser(String string){
+
+        jsonParser = string;
+    }
     /**
      * This method parses JSON from a web response and returns an array of Strings
      * describing the movie
@@ -58,8 +63,9 @@ public final class JsonParser {
         //this is for the number of vote that the movie received
          String VOTE ;
 
+
         //We are making a Json object properly parsed from the network request
-        JSONObject MovieJson = new JSONObject(response_From_Movie_Data_Base );
+        JSONObject MovieJson = new JSONObject(jsonParser);
 
         /* Is there an error? */
         if (MovieJson.has(HTTP_REQUEST_CODE)) {

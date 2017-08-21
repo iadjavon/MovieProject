@@ -12,8 +12,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.example.android.movieproject.MainActivity.jsonResponse;
-
 /**
  * Created by itsidoadjavon on 8/3/17.
  */
@@ -21,15 +19,15 @@ import static com.example.android.movieproject.MainActivity.jsonResponse;
 public class MainActivityFragment extends Fragment {
 
 
-//    private String jsonResponse = Networkutil.getResponseFromHttpUrl(Networkutil.buildUrl());
-    private ArrayList<MovieDescription> movies_Description_List = JsonParser.getSimpleJsonFromTheMovieDataBase(getContext(), jsonResponse );
+   private String jsonResponse = Networkutil.getResponseFromHttpUrl(Networkutil.buildUrl());
+   private ArrayList<MovieDescription> movies_Description_List = JsonParser.getSimpleJsonFromTheMovieDataBase(getContext(), jsonResponse );
+
     private MovieAdapter movies = null;
 
     public MainActivityFragment() throws IOException, JSONException {
 
 
     }
-
 
 
     @Override

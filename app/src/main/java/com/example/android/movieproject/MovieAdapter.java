@@ -44,8 +44,6 @@ public class MovieAdapter extends ArrayAdapter<MovieDescription> {
         //iconView.setImageResource(movieAdapted.getMoviePath());
         //Picasso.with(context).load(picassoPath).into(imageView)
 
-
-
         return convertView;
 
     }

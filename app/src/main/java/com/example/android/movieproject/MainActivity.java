@@ -4,14 +4,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import static com.example.android.movieproject.Networkutil.buildUrl;
 
 public class MainActivity extends AppCompatActivity {
 
-    static String jsonResponse = null;
+    private static String dataReturnedFromUrl= null;
+    private static ArrayList<MovieDescription> listOfMovie = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,50 +24,43 @@ public class MainActivity extends AppCompatActivity {
         new DisplayTask().execute(buildUrl());
     }
 
-
-
-
-
-//        private void makeGithubSearchQuery() {
-//            String githubQuery = mSearchBoxEditText.getText().toString();
-//            URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
-//            mUrlDisplayTextView.setText(githubSearchUrl.toString());
-//            String githubSearchResults = null;
-//
-//            new DisplayTask().execute(githubSearchUrl);
-//            // TODO (4) Create a new GithubQueryTask and call its execute method, passing in the url to query
-//        }
-        public class DisplayTask extends AsyncTask<URL,Void,String>{
+        public class DisplayTask extends AsyncTask<URL,Void,ArrayList<MovieDescription>> {
 
             @Override
-            protected String doInBackground(URL... params) {
+            protected ArrayList<MovieDescription> doInBackground(URL... params) {
                 URL urls = params[0];
 
-                try{
-                    jsonResponse = Networkutil.getResponseFromHttpUrl(buildUrl());
+                try {
+                    dataReturnedFromUrl = Networkutil.getResponseFromHttpUrl(urls);
 
-                }catch(IOException bad){
+                } catch (IOException bad) {
                     bad.printStackTrace();
 
                 }
-                return jsonResponse;
+                try {
+                    return listOfMovie = new JsonParser(dataReturnedFromUrl).getSimpleJsonFromTheMovieDataBase(getBaseContext(), dataReturnedFromUrl);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return listOfMovie;
             }
-            @Override
-            protected void onPostExecute(String str)  {
-                
+
+
+            protected void onPostExecute()
+
+            {
+
+                try {
+                    new MainActivityFragment();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-}}
+}
