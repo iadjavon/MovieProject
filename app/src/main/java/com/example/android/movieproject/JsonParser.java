@@ -33,8 +33,6 @@ public final class JsonParser {
      *
      * @param movieJsonStr JSON response from server
      *
-     * @return Array of Strings describing weather data
-     *
      * @throws JSONException If JSON data cannot be properly parsed
      */
     public static ArrayList<MovieDescription> getSimpleJsonFromTheMovieDataBase(Context context, String movieJsonStr )
@@ -55,21 +53,21 @@ public final class JsonParser {
         //this is a short description of the movie
          String OVERVIEW = null;
         //this field is for the release date
-         String RELEASE_DATE ;
+         String RELEASE_DATE = null;
         //this is for the title of the movie
-         String MOVIE_TITLE ;
+         String MOVIE_TITLE = null ;
         //this is the movie popularity
-         String POPULARITY ;
+         String POPULARITY = null;
         //this is for the number of vote that the movie received
-         String VOTE ;
+         String VOTE = null;
 
 
         //We are making a Json object properly parsed from the network request
-        JSONObject MovieJson = new JSONObject(jsonParser);
+        JSONObject movieJson = new JSONObject(jsonParser);
 
         /* Is there an error? */
-        if (MovieJson.has(HTTP_REQUEST_CODE)) {
-            int errorCode = MovieJson.getInt(HTTP_REQUEST_CODE);
+        if (movieJson.has(HTTP_REQUEST_CODE)) {
+            int errorCode = movieJson.getInt(HTTP_REQUEST_CODE);
 
             switch (errorCode) {
                 //here we get 200
@@ -86,15 +84,15 @@ public final class JsonParser {
         }
 
         //here we retrieve the values of the field result in Json Object. They are many.
-        JSONArray DataArray = MovieJson.getJSONArray(RESULT_FIELD);
+        JSONArray dataArray = movieJson.getJSONArray(RESULT_FIELD);
 
-        String[] field_Json_Array = new String[DataArray.length()];
+        //String[] field_Json_Array = new String[dataArray.length()];
 
         //we loop through each element of the Json object
-        for (int i = 0; i < DataArray.length(); i++) {
+        for (int i = 0; i < dataArray.length(); i++) {
             //We get the object at position i
             JSONObject movie_Description =
-                    DataArray.getJSONObject(i);
+                    dataArray.getJSONObject(i);
             //we get the values from of the field passed as strings
             POSTER_PATH = movie_Description.getString("poster_path");
             OVERVIEW = movie_Description.getString("overview");

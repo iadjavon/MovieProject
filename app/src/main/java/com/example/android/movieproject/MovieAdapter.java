@@ -25,8 +25,7 @@ public class MovieAdapter extends ArrayAdapter<MovieDescription> {
     @Override
     public View getView(int position,  View convertView,  ViewGroup parent) {
 
-
-        // Gets the AndroidFlavor object from the ArrayAdapter at the appropriate position
+        // Gets the movie
         MovieDescription movieAdapted = getItem(position);
 
         // Adapters recycle views to AdapterViews.

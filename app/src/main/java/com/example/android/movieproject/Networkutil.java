@@ -29,7 +29,7 @@ public final class Networkutil {
             "w185";
     final static String QUERY_PARAM = "?";
 
-    private static final String API_KEY = "1fd9d69d136b388b779b89d3d9c5e57a";//put your api key here
+    private static final String API_KEY = "";//put your api key here
 
     private static final String   MOVIES_URL =
             "http://image.tmdb.org/t/p/";

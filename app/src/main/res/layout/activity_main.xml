@@ -6,5 +6,6 @@
     tools:name="com.example.android.movieproject.MainActivityFragment"
     android:layout="@layout/fragment_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:name="com.example.android.movieproject.MainActivityFragment" />
 
